@@ -1,0 +1,9 @@
+# 下記のフォーマットでプロジェクトごとの設定を記述する
+# ポート番号はプロジェクトをまたいで重複している場合は後勝ちとなる
+# synced_folder も forwarded_port も左辺が GustOS 側
+#
+# - synced_folder:
+#     /my_project-dir-on-guest-os: ../my_project-dir-on-host-os
+#   forwarded_port:
+#     1337: 1338
+#     80: 8080

@@ -1,0 +1,4 @@
+#!/bin/bash -e
+set -eu
+
+docker exec -it $1 sh

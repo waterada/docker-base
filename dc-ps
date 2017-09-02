@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker ps -a --size --format "table {{.ID}}  {{.Image}}\t{{.CreatedAt}}\t{{.Status}}\t{{.Ports}}\t{{.Names}}\t{{.Label "'"com.docker.compose.project"'"}}"

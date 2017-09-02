@@ -1,0 +1,37 @@
+#!/bin/bash -e
+set -eu
+
+FOLDER=$(pwd)
+FOLDER=${FOLDER##*/}  # 末端フォルダ名だけ取り出し
+FOLDER=${FOLDER//[._-]/}  # 記号撤去
+
+
+: Kill all
+for I in `docker ps --filter status=running -q`
+do
+     docker kill ${I}
+done
+
+: Rename current apps
+CONTAINERS=$(docker ps -a --format "{{.Names}}:{{.Label "'"com.docker.compose.project"'"}}")
+for NM_FL in `echo -e "${CONTAINERS}" | grep -v -- "----"`
+do
+    NM="${NM_FL%%:*}"
+    FL="${NM_FL##*:}"
+    echo docker rename ${NM} ${FL}----${NM}
+         docker rename ${NM} ${FL}----${NM}
+done
+
+: Activate my apps
+CONTAINERS=$(docker ps -a --format "{{.Names}}:{{.Label "'"com.docker.compose.project"'"}}")
+for NM_FL in `echo -e "${CONTAINERS}" | grep -- "${FOLDER}----"`
+do
+    NM="${NM_FL%%:*}"
+    FL="${NM_FL##*:}"
+    echo docker rename ${NM} ${NM/${FL}----/}
+         docker rename ${NM} ${NM/${FL}----/}
+done
+
+docker-compose up -d
+
+docker ps -a --size --format "table {{.Image}}\t{{.Status}}\t{{.Ports}}\t{{.Names}}\t{{.Label "'"com.docker.compose.project"'"}}"
