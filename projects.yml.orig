@@ -1,0 +1,12 @@
+# プロジェクトのフォルダ(.docker-base)の存在するフォルダを配列で列挙する。
+# 例:
+# - ../project-aa
+# - ../project-bb
+#
+# .docker-base は下記のフォーマットで記述する
+# ※ forwarded_port は左辺が GustOS 側
+# 例:
+# synced_folder: /my_project-dir-on-guest-os
+# forwarded_port:
+#   1337: 1338
+#   80: 8080
