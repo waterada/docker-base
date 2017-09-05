@@ -18,29 +18,27 @@ docker を使って複数プロジェクトを管理する際に、
 ■プロジェクトの追加方法
 ------------------------
 
-`projects.yml` にプロジェクトの内容（同期フォルダとフォワードポート）を書き込む。
+`projects.yml.orig` をコピーして `projects.yml` を作成する。
+このファイルに連携させたい各プロジェクトのパスを書く。
 
 例:
 
 ```yml
-- synced_folder:
-    /aaaa-a123: ../aaaa/a123
+- ../aaaa/a123
+- ../bbbb-1234
+- ../cccc.1234
+```
+
+次に、各プロジェクトのフォルダ内に `.docker-base` という yml ファイルを置く
+例:
+
+```yml
+- synced_folder: /aaaa-a123
   forwarded_port:
     1337: 1338
     80: 8080
-
-- synced_folder:
-    /bbbb-1234: ../bbbb-1234
-  forwarded_port:
-    1337: 1338
-
-- synced_folder:
-    /cccc.1234: ../cccc.1234
-  forwarded_port:
-    1337: 1338
 ```
-
-- `synced_folder` は左辺が Guest OS 側のパス（フルパス）で、右辺が Host OS 側（相対パス）
+- `synced_folder` は Guest OS 側のパス（フルパス）。
 - `forwarded_port` は左辺が Guest OS 側のポートで、右辺が Host OS 側
 
 その後、`vagrant up` や `vagrant reload` を実行することで、その設定が反映される。
