@@ -5,8 +5,9 @@ require 'yaml'
 proj_synced_folder = {}
 proj_forwarded_port = {}
 projects = YAML.load_file(File.join(File.dirname(__FILE__), 'projects.yml'))
-projects.each{|proj|
-  proj_synced_folder.merge!(proj['synced_folder'])
+projects.each{|proj_path|
+  proj = YAML.load_file(File.join(File.dirname(__FILE__), proj_path, '.docker-base'))
+  proj_synced_folder[proj['synced_folder']] = proj_path
   proj_forwarded_port.merge!(proj['forwarded_port']) if proj.has_key?('forwarded_port')
 }
 
