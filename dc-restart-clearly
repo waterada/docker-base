@@ -1,0 +1,16 @@
+#!/bin/bash -e
+set -eu
+
+TARGET=${1?ContainerName is required}
+
+: kill target
+docker-compose kill ${TARGET}
+
+: rm log
+LOG_PATH=`docker inspect --format='{{.LogPath}}' ${TARGET}`
+sudo rm ${LOG_PATH}
+
+: up
+docker-compose up -d ${TARGET}
+
+docker-compose logs -f ${TARGET}

@@ -32,4 +32,5 @@ alias dc='docker-compose'
 alias dcps='/vagrant/dc-ps'
 alias dcswitch='/vagrant/dc-switch'
 alias dcexec='/vagrant/dc-exec'
+alias dcrestartclearly='/vagrant/dc-restart-clearly'
 EOS
