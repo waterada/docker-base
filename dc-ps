@@ -1,3 +1,4 @@
 #!/bin/bash
 
-docker ps -a --size --format "table {{.ID}}  {{.Image}}\t{{.CreatedAt}}\t{{.Status}}\t{{.Ports}}\t{{.Names}}\t{{.Label "'"com.docker.compose.project"'"}}"
+FORMAT="table {{.ID}}  {{.Image}}\t{{.CreatedAt}}\t{{.Status}}\t{{.Names}}\t{{.Label "'"com.docker.compose.project"'"}}\t{{.Ports}}"
+docker ps -a --size --format "$FORMAT"

@@ -34,4 +34,4 @@ done
 
 docker-compose up -d
 
-docker ps -a --size --format "table {{.Image}}\t{{.Status}}\t{{.Ports}}\t{{.Names}}\t{{.Label "'"com.docker.compose.project"'"}}"
+docker ps -a --size --format "table {{.Image}}\t{{.Status}}\t{{.Names}}\t{{.Label "'"com.docker.compose.project"'"}}\t{{.Ports}}"
