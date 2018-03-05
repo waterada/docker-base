@@ -41,6 +41,12 @@ docker を使って複数プロジェクトを管理する際に、
 - `synced_folder` は Guest OS 側のパス（フルパス）。
 - `forwarded_port` は左辺が Guest OS 側のポートで、右辺が Host OS 側
 
+up の前に vbguest を入れる
+
+```
+vagrant plugin install vagrant-vbguest
+```
+
 その後、`vagrant up` や `vagrant reload` を実行することで、その設定が反映される。
 
 
